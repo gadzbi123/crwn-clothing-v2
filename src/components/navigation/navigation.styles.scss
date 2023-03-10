@@ -1,0 +1,24 @@
+.navigation-container {
+  display: flex;
+  justify-content: space-around;
+  margin: 2rem 0;
+  align-items: center;
+  .logo {
+    width: 100px;
+    height: 100px;
+  }
+  .link-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 6rem;
+    > * {
+      box-sizing: border-box;
+      color: #222;
+      font-size: 25px;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
