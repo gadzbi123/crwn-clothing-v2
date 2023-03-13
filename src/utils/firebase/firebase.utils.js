@@ -65,5 +65,6 @@ export const signInEmailAndPassword = async (email, password) => {
       alert("User does not exist");
     if (error.message.includes("too-many-requests"))
       alert("Too many requests attempted");
+    console.log("signInError", error.message);
   }
 };
