@@ -4,9 +4,11 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   GoogleAuthProvider,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
   signInWithPopup,
   signInWithRedirect,
+  signOut,
 } from "firebase/auth";
 import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -67,4 +69,9 @@ export const signInEmailAndPassword = async (email, password) => {
       alert("Too many requests attempted");
     console.log("signInError", error.message);
   }
+};
+export const signOutUser = async () => await signOut(auth);
+export const onAuthStateChangedListener = (callback) => {
+  if (!callback) return;
+  onAuthStateChanged(auth, callback);
 };

@@ -1,11 +1,13 @@
 import { getRedirectResult } from "firebase/auth";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+
 import {
-  createUserDocumentFromAuth,
   signInEmailAndPassword,
   signInWithGooglePopup,
+  signOutUser,
 } from "../../utils/firebase/firebase.utils";
 import "./signIn.styles.scss";
+
 const defaultFormValues = {
   email: "",
   password: "",
@@ -15,8 +17,7 @@ const SignIn = () => {
   const { email, password } = formValues;
 
   const logInGooglePopup = async () => {
-    const response = await signInWithGooglePopup();
-    await createUserDocumentFromAuth(response.user);
+    await signInWithGooglePopup();
   };
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -28,9 +29,13 @@ const SignIn = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const result = await signInEmailAndPassword(email, password);
-    console.log(result);
-    resetFormFields();
+    try {
+      const { user } = await signInEmailAndPassword(email, password);
+
+      resetFormFields();
+    } catch (error) {
+      alert(error.message);
+    }
   };
   return (
     <div className="sign-up">

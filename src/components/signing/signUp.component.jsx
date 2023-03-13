@@ -15,7 +15,7 @@ const SignUp = () => {
   const [formValues, setFormValues] = useState(defaultFormValues);
   const { displayName, email, password, confirmPassword } = formValues;
 
-  // useEffect(() => {
+  // useEffect(() =>
   //   const doSth = async () => {
   //     const response = await getRedirectResult(auth);
   //     if (response) {
@@ -39,8 +39,9 @@ const SignUp = () => {
       return;
     }
     try {
-      const response = await createWithEmailAndPassword(email, password);
-      await createUserDocumentFromAuth({ ...response.user, displayName });
+      const { user } = await createWithEmailAndPassword(email, password);
+      await createUserDocumentFromAuth({ ...user, displayName });
+
       resetFormFields();
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
