@@ -8,13 +8,7 @@ import {
   signInWithPopup,
   signInWithRedirect,
 } from "firebase/auth";
-import {
-  doc,
-  Firestore,
-  getDoc,
-  getFirestore,
-  setDoc,
-} from "firebase/firestore";
+import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -42,11 +36,14 @@ export const signInWithGoogleRedirect = () =>
 
 const db = getFirestore(firebaseApp);
 export const createUserDocumentFromAuth = async (userAuth) => {
-  const userDocRef = doc(db, "users", userAuth.uid);
-
+  console.log("userAuth", userAuth);
+  const userDocRef = doc(db, "users", userAuth.uid); //
+  console.log("ref", userDocRef);
   const userDocument = await getDoc(userDocRef);
-
+  console.log("getDoc", userDocument);
+  /*
   if (!userDocument.exists()) {
+    console.log("user not exists");
     const { displayName, email } = userAuth;
     const { createdAt } = userAuth.metadata;
     try {
@@ -54,10 +51,24 @@ export const createUserDocumentFromAuth = async (userAuth) => {
     } catch (e) {
       console.log(e);
     }
-  }
+  } else console.log("user exists");
   return userDocRef;
+  */
 };
 export const createWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
   return await createUserWithEmailAndPassword(auth, email, password);
+};
+export const signInEmailAndPassword = async (email, password) => {
+  if (!email || !password) return;
+  try {
+    return await signInWithEmailAndPassword(auth, email, password);
+  } catch (error) {
+    if (error.message === "Firebase: Error (auth/wrong-password).")
+      alert("Wrong password inserted");
+    if (error.message === "Firebase: Error (auth/user-not-found).")
+      alert("User does not exist");
+    if (error.message.includes("too-many-requests"))
+      alert("Too many requests attempted");
+  }
 };
