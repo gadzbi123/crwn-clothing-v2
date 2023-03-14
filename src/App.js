@@ -2,8 +2,8 @@ import { Component } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Contact from "./components/contact/contact.component";
 import Directories from "./components/directories/directories.component";
-import Navigation from "./components/navigation/navigation.component";
 import Sign from "./components/signing/sign.component";
+import Navigation from "./routes/navigation/navigation.component";
 import Shop from "./routes/shop/shop.component";
 
 class App extends Component {

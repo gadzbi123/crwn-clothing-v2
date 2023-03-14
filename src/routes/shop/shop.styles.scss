@@ -1,0 +1,10 @@
+.shop-items {
+  display: grid;
+  margin: 50px auto;
+  width: 80%;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+  //   margin: 0 auto;
+  justify-content: center;
+  row-gap: 40px;
+}
