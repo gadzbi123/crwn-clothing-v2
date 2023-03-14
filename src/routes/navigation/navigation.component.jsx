@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { ReactComponent as CrownLogo } from "../../assets/crown.svg";
-import CardDropdown from "../../components/card-dropdown/card-dropdown.component";
-import CardIcon from "../../components/card-icon/card-icon.component";
+import CardDropdown from "../../components/cart-dropdown/card-dropdown.component";
+import CardIcon from "../../components/cart-icon/cart-icon.component";
 import { CardContext } from "../../contexts/card.context";
 import { UserContext } from "../../contexts/user.context";
 import { signOutUser } from "../../utils/firebase/firebase.utils";

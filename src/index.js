@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 
 import App from "./App";
-import { CardListProvider } from "./contexts/card-list.context";
+
 import { CardProvider } from "./contexts/card.context";
 import { ProductsProvider } from "./contexts/products.context";
 import { UserProvider } from "./contexts/user.context";
@@ -16,9 +16,7 @@ ReactDOM.render(
       <UserProvider>
         <ProductsProvider>
           <CardProvider>
-            <CardListProvider>
-              <App />
-            </CardListProvider>
+            <App />
           </CardProvider>
         </ProductsProvider>
       </UserProvider>
