@@ -1,4 +1,5 @@
 import { Fragment, useContext } from "react";
+import { Link } from "react-router-dom";
 import { CardContext } from "../../contexts/card.context";
 import Button from "../buttons/button.component";
 import CartItem from "../cart-item/cart-item.component";
@@ -15,7 +16,9 @@ const CardDropdown = () => {
               return <CartItem key={item.id} cartItem={item} />;
             })}
           </div>
-          <Button>Check out</Button>
+          <Link to={"/checkout"}>
+            <Button>Check out</Button>
+          </Link>
         </>
       )}
     </div>

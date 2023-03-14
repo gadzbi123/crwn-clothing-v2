@@ -3,6 +3,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import Contact from "./components/contact/contact.component";
 import Directories from "./components/directories/directories.component";
 import Sign from "./components/signing/sign.component";
+import Checkout from "./routes/checkout/checkout.component";
 import Navigation from "./routes/navigation/navigation.component";
 import Shop from "./routes/shop/shop.component";
 
@@ -15,6 +16,7 @@ class App extends Component {
           <Route path="shop" element={<Shop />} />
           <Route path="contact" element={<Contact />} />
           <Route path="sign" element={<Sign />} />
+          <Route path="checkout" element={<Checkout />} />
         </Route>
         {/* <Route path="*" element={<Navigate to="/home" replace />} />  ADD EXACT TO UP*/}
       </Routes>
