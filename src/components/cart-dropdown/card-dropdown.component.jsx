@@ -1,11 +1,15 @@
 import { Fragment, useContext } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { CardContext } from "../../contexts/card.context";
 import Button from "../buttons/button.component";
 import CartItem from "../cart-item/cart-item.component";
 import "./cart-dropdown.styles.scss";
 const CardDropdown = () => {
   const { cartItems } = useContext(CardContext);
+  const navigate = useNavigate();
+  const navigateToCheckout = () => {
+    navigate("/checkout");
+  };
   return (
     <div className="cart-dropdown-container">
       {!cartItems.length && <p className="empty-message">Cart is empty</p>}
@@ -16,9 +20,7 @@ const CardDropdown = () => {
               return <CartItem key={item.id} cartItem={item} />;
             })}
           </div>
-          <Link to={"/checkout"}>
-            <Button>Check out</Button>
-          </Link>
+          <Button onClick={navigateToCheckout}>Check out</Button>
         </>
       )}
     </div>

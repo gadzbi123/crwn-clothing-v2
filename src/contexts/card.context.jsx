@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 const addCartItem = (cartItems, newItem) => {
   const exists = cartItems.find((value) => value.id === newItem.id);
@@ -31,6 +31,7 @@ export const CardContext = createContext({
   addItemToCart: () => {},
   removeItemFromCart: () => {},
   decrementItemFromCart: () => {},
+  totalCostFromCart: 0,
   sumOfProducts: 0,
 });
 
@@ -38,18 +39,22 @@ export const CardProvider = ({ children }) => {
   const [isCardOpen, setIsCardOpen] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const [sumOfProducts, setSumOfProducts] = useState(0);
+  const [totalCostFromCart, setTotalCostFromCart] = useState(0);
+
+  useEffect(() => {
+    setSumOfProducts(cartItems.reduce((sum, item) => sum + item.quantity, 0));
+    setTotalCostFromCart(
+      cartItems.reduce((total, i) => (total += i.quantity * i.price), 0)
+    );
+  }, [cartItems]);
 
   const addItemToCart = (newCartItem) => {
-    setSumOfProducts(sumOfProducts + 1);
     setCartItems(addCartItem(cartItems, newCartItem));
   };
   const removeItemFromCart = (itemToRemove) => {
-    setSumOfProducts(sumOfProducts - itemToRemove.quantity);
     setCartItems(removeCartItem(cartItems, itemToRemove));
   };
-
   const decrementItemFromCart = (itemToRemove) => {
-    setSumOfProducts(sumOfProducts - 1);
     setCartItems(decrementCartItem(cartItems, itemToRemove));
   };
   const value = {
@@ -60,6 +65,7 @@ export const CardProvider = ({ children }) => {
     decrementItemFromCart,
     cartItems,
     sumOfProducts,
+    totalCostFromCart,
   };
   return <CardContext.Provider value={value}>{children}</CardContext.Provider>;
 };
