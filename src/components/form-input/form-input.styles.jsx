@@ -1,14 +1,26 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const subColor = "grey";
 
 //as long as it works
-const shrinkLabel = styled.div`
+const shrinkLabelStyles = css`
   top: -14px;
   font-size: 12px;
   color: black;
-`.componentStyle.rules[0];
+`;
 
+export const FormInputLabel = styled.label`
+  color: ${subColor};
+  font-size: 16px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  transition: 300ms ease all;
+
+  ${(props) => props.shrink && shrinkLabelStyles}
+`;
 export const Group = styled.div`
   position: relative;
   margin: 45px 0;
@@ -30,27 +42,12 @@ export const Group = styled.div`
       outline: none;
     }
 
-    &:focus ~ .form-input-label {
-      ${shrinkLabel}
+    &:focus ~ ${FormInputLabel} {
+      ${shrinkLabelStyles}
     }
   }
 
   input[type="password"] {
     letter-spacing: 0.3em;
-  }
-
-  .form-input-label {
-    color: ${subColor};
-    font-size: 16px;
-    font-weight: normal;
-    position: absolute;
-    pointer-events: none;
-    left: 5px;
-    top: 10px;
-    transition: 300ms ease all;
-
-    &.shrink {
-      ${shrinkLabel}
-    }
   }
 `;
