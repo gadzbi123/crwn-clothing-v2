@@ -5,9 +5,9 @@ export const CartReducer = (state = INITIAL_STATE, action) => {
 
   switch (type) {
     case CartActionTypes.setCartItems:
-      return { ...state, cart: payload };
-    case CartActionTypes.setCartOpen:
-      return { ...state, cart: payload };
+      return { ...state, cartItems: payload };
+    case CartActionTypes.setIsCartOpen:
+      return { ...state, isCartOpen: payload };
     default:
       return state;
   }
@@ -15,6 +15,4 @@ export const CartReducer = (state = INITIAL_STATE, action) => {
 const INITIAL_STATE = {
   isCartOpen: false,
   cartItems: [],
-  cartCount: 0,
-  cartTotal: 0,
 };
