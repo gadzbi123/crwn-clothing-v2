@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, useReducer } from "react";
+import { createContext, useReducer } from "react";
 import { createAction } from "../utils/reducer/reducer.utils";
 const addCartItem = (cartItems, productToAdd) => {
   const existingCartItem = cartItems.find(
@@ -50,8 +50,8 @@ export const CartContext = createContext({
 });
 
 const CartActionTypes = {
-  setCartItems: "setCartItems",
-  setCartOpen: "setCartOpen",
+  setCartItems: "SET_CART_ITEMS",
+  setCartOpen: "SET_CART_OPEN",
 };
 const cartReducer = (state, action) => {
   const { type, payload } = action;
