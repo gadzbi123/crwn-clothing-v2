@@ -9,8 +9,8 @@ import {
   selectCategoriesMap,
 } from "../../store/categories/categories.selector";
 
+import Spinner from "../../components/spinner/spinner.component";
 import { CategoryContainer, CategoryTitle } from "./category.styles.jsx";
-
 const Category = () => {
   const { category } = useParams();
   const categoriesMap = useSelector(selectCategoriesMap);
@@ -23,13 +23,19 @@ const Category = () => {
 
   return (
     <Fragment>
-      <CategoryTitle>{category.toUpperCase()}</CategoryTitle>
-      <CategoryContainer>
-        {products &&
-          products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-      </CategoryContainer>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <>
+          <CategoryTitle>{category.toUpperCase()}</CategoryTitle>
+          <CategoryContainer>
+            {products &&
+              products.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+          </CategoryContainer>
+        </>
+      )}
     </Fragment>
   );
 };
