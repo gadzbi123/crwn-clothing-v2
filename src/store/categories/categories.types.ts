@@ -4,3 +4,20 @@ export enum CategoriesActionTypes {
   fetchCategoriesSuccess = "categories/FETCH_CATEGORIES_SUCCESS",
   fetchCategoriesFailure = "categories/FETCH_CATEGORIES_FAILURE",
 }
+
+export type CategoryItem = {
+  id: number;
+  imageUrl: string;
+  name: string;
+  price: number;
+};
+
+export type Category = {
+  title: string;
+  imageUrl: string;
+  items: CategoryItem[];
+};
+
+export type CategoryMap = {
+  [key: string]: CategoryItem[];
+};

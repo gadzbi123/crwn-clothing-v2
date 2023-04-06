@@ -11,6 +11,7 @@ const ProductCard = ({ product }) => {
 
   return (
     <ProductCardContainer>
+      {console.log("url", imageUrl)}
       <img src={imageUrl} alt={`${name}`} />
       <div className="footer">
         <span className="name">{name}</span>
