@@ -1,36 +1,36 @@
-import { initializeApp } from 'firebase/app';
+import { initializeApp } from "firebase/app";
 import {
-  getAuth,
-  signInWithRedirect,
-  signInWithPopup,
   GoogleAuthProvider,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-  onAuthStateChanged,
-  User,
   NextOrObserver,
+  User,
   UserCredential,
-} from 'firebase/auth';
+  createUserWithEmailAndPassword,
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signInWithRedirect,
+  signOut,
+} from "firebase/auth";
 import {
-  getFirestore,
+  QueryDocumentSnapshot,
+  collection,
   doc,
   getDoc,
-  setDoc,
-  collection,
-  writeBatch,
-  query,
   getDocs,
-  QueryDocumentSnapshot,
-} from 'firebase/firestore';
+  getFirestore,
+  query,
+  setDoc,
+  writeBatch,
+} from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyDDU4V-_QV3M8GyhC9SVieRTDM4dbiT0Yk',
-  authDomain: 'crwn-clothing-db-98d4d.firebaseapp.com',
-  projectId: 'crwn-clothing-db-98d4d',
-  storageBucket: 'crwn-clothing-db-98d4d.appspot.com',
-  messagingSenderId: '626766232035',
-  appId: '1:626766232035:web:506621582dab103a4d08d6',
+  apiKey: "AIzaSyBvUIZ32Gi8-t9gtga0Ivr8bmYdbPFqljA",
+  authDomain: "crown-clothing-75cb1.firebaseapp.com",
+  projectId: "crown-clothing-75cb1",
+  storageBucket: "crown-clothing-75cb1.appspot.com",
+  messagingSenderId: "227787515561",
+  appId: "1:227787515561:web:d035d5981b64cca1542bb8",
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
@@ -38,7 +38,7 @@ const firebaseApp = initializeApp(firebaseConfig);
 const googleProvider = new GoogleAuthProvider();
 
 googleProvider.setCustomParameters({
-  prompt: 'select_account',
+  prompt: "select_account",
 });
 
 export const auth = getAuth();
@@ -66,7 +66,7 @@ export const addCollectionAndDocuments = async <T extends ObjectToAdd>(
   });
 
   await batch.commit();
-  console.log('done');
+  console.log("done");
 };
 
 type CategoryItem = {
@@ -83,7 +83,7 @@ type CategoryData = {
 };
 
 export const getCategoriesAndDocuments = async (): Promise<CategoryData[]> => {
-  const collectionRef = collection(db, 'categories');
+  const collectionRef = collection(db, "categories");
   const q = query(collectionRef);
 
   const querySnapshot = await getDocs(q);
@@ -108,7 +108,7 @@ export const createUserDocumentFromAuth = async (
 ): Promise<QueryDocumentSnapshot<UserData> | void> => {
   if (!userAuth) return;
 
-  const userDocRef = doc(db, 'users', userAuth.uid);
+  const userDocRef = doc(db, "users", userAuth.uid);
 
   const userSnapshot = await getDoc(userDocRef);
 
@@ -124,7 +124,7 @@ export const createUserDocumentFromAuth = async (
         ...additionalInformation,
       });
     } catch (error) {
-      console.log('error creating the user', error);
+      console.log("error creating the user", error);
     }
   }
 
