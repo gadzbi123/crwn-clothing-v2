@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { addItemToCart } from "../../store/cart/cart.action";
@@ -13,7 +14,7 @@ import {
   ProductCartContainer,
 } from "./product-card.styles";
 
-const ProductCard = ({ product }: { product: CategoryItem }) => {
+const ProductCard = memo(({ product }: { product: CategoryItem }) => {
   const { name, price, imageUrl } = product;
   const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItems);
@@ -34,6 +35,6 @@ const ProductCard = ({ product }: { product: CategoryItem }) => {
       </Button>
     </ProductCartContainer>
   );
-};
+});
 
 export default ProductCard;

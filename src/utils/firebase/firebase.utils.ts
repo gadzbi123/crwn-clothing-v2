@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import type {} from "firebase/auth";
 import {
   GoogleAuthProvider,
   NextOrObserver,
@@ -12,7 +13,6 @@ import {
   signInWithRedirect,
   signOut,
 } from "firebase/auth";
-import type {} from "firebase/auth";
 import {
   QueryDocumentSnapshot,
   collection,
